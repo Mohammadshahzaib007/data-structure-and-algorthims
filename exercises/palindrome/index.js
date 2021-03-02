@@ -8,6 +8,7 @@
 //   palindrome("abcdefg") === false
 
 function palindrome(str) {
+    // not ideal solution
  return str.split("").every((char, i) => {
     return char === str[str.length - i - 1];
   });
