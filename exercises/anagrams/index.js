@@ -8,41 +8,51 @@
 //   anagrams('RAIL! SAFETY!', 'fairy tales') --> True
 //   anagrams('Hi there', 'Bye there') --> False
 
-// for removing all the spaces, punctuation, and converting to the lowercase
-function cleanString(str) {
-  return str.replace(/[^\w]/g, "").toLowerCase();
+function sortStr(str) {
+  return str.replace(/[^\w]/g, "").toLowerCase().split('').sort().join('');
 }
 
-function charMap(str) {
-  // removing all the space, punctuation, and converting into lowercase
-  const cleanedStr = cleanString(str);
-
-  //creating an object of strings
-  const charactersMap = {};
-
-  //looping through the string to create an object
-  for (const char of cleanedStr) {
-    charactersMap[char] = charactersMap[char] + 1 || 1;
-  }
-  return charactersMap;
-}
-
-function anagrams(stringA, stringB) {
-  //creating an object of strings
-  let strAChar = charMap(stringA);
-  let strBChar = charMap(stringB);
-
-  if (Object.keys(strAChar).length !== Object.keys(strBChar).length) {
-    return false;
-  }
-
-  for (const char in strAChar) {
-    if (strAChar[char] !== strBChar[char]) {
-      return false;
-    }
-  }
-
-  return true;
+function anagrams(strA, strB) {
+  const sortedStrA = sortStr(strA);
+  const sortedStrB = sortStr(strB);
+  return sortedStrA === sortedStrB;
 }
 
 module.exports = anagrams;
+
+// for removing all the spaces, punctuation, and converting to the lowercase
+// function cleanString(str) {
+//     return str.replace(/[^\w]/g, "").toLowerCase();
+//   }
+
+//   function charMap(str) {
+//     // removing all the space, punctuation, and converting into lowercase
+//     const cleanedStr = cleanString(str);
+
+//     //creating an object of strings
+//     const charactersMap = {};
+
+//     //looping through the string to create an object
+//     for (const char of cleanedStr) {
+//       charactersMap[char] = charactersMap[char] + 1 || 1;
+//     }
+//     return charactersMap;
+//   }
+
+//   function anagrams(stringA, stringB) {
+//     //creating an object of strings
+//     let strAChar = charMap(stringA);
+//     let strBChar = charMap(stringB);
+
+//     if (Object.keys(strAChar).length !== Object.keys(strBChar).length) {
+//       return false;
+//     }
+
+//     for (const char in strAChar) {
+//       if (strAChar[char] !== strBChar[char]) {
+//         return false;
+//       }
+//     }
+
+//     return true;
+//   }
